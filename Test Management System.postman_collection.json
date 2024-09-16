@@ -1,0 +1,2421 @@
+{
+	"info": {
+		"_postman_id": "e13cb5a7-4094-4988-89c7-9f50a0c0b4bf",
+		"name": "Test Management System",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "37596829"
+	},
+	"item": [
+		{
+			"name": "Users",
+			"item": [
+				{
+					"name": "Create User",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"// Verifica que la respuesta del servidor sea un logout exitoso\r",
+									"if (pm.response.code === 200) {\r",
+									"  // Eliminar la variable de entorno 'authToken'\r",
+									"  pm.environment.unset(\"accessToken\");\r",
+									"  \r",
+									"  console.log(\"Token de autenticación eliminado de la variable de entorno: authToken\");\r",
+									"} else {\r",
+									"  console.log(\"Error al cerrar sesión. No se eliminó el token.\");\r",
+									"}\r",
+									""
+								],
+								"type": "text/javascript",
+								"packages": {}
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							},
+							{
+								"key": "Authorization",
+								"value": "Bearer {{accessToken}}",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n  \"username\": \"test\",\r\n  \"email\": \"test@test.com\",\r\n  \"password_hash\": \"test\",\r\n  \"role_id\": \"ed89ac83-6693-489b-86f9-c0cba551e348\"\r\n}\r\n",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{baseUrl}}/api/users",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"api",
+								"users"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "All Users",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							},
+							{
+								"key": "Authorization",
+								"value": "Bearer {{accessToken}}",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{baseUrl}}/api/users",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"api",
+								"users"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "User by ID",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							},
+							{
+								"key": "Authorization",
+								"value": "Bearer {{accessToken}}",
+								"type": "text"
+							},
+							{
+								"key": "",
+								"value": "",
+								"type": "text",
+								"disabled": true
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{baseUrl}}/api/users/bb00767f-d69f-47c4-b0fb-48e4cc543d08",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"api",
+								"users",
+								"bb00767f-d69f-47c4-b0fb-48e4cc543d08"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Update User by ID",
+					"request": {
+						"method": "PUT",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							},
+							{
+								"key": "Authorization",
+								"value": "Bearer {{accessToken}}",
+								"type": "text"
+							},
+							{
+								"key": "",
+								"value": "",
+								"type": "text",
+								"disabled": true
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n  \"username\": \"test\",\r\n  \"email\": \"admin2@mail.com\",\r\n  \"role_id\": \"ed89ac83-6693-489b-86f9-c0cba551e348\",\r\n  \"is_active\": true\r\n}\r\n",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{baseUrl}}/api/users/7991a903-ed97-4aba-8e2a-b9522e190a18",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"api",
+								"users",
+								"7991a903-ed97-4aba-8e2a-b9522e190a18"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Delete User by ID",
+					"request": {
+						"method": "DELETE",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							},
+							{
+								"key": "Authorization",
+								"value": "Bearer {{accessToken}}",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{baseUrl}}/api/users/9a5e1f29-1437-4698-b480-b7d8394ff822",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"api",
+								"users",
+								"9a5e1f29-1437-4698-b480-b7d8394ff822"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Roles",
+			"item": [
+				{
+					"name": "All Roles",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer {{accessToken}}",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "{{baseUrl}}/api/roles",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"api",
+								"roles"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Create Rol",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer {{accessToken}}",
+								"type": "text"
+							},
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n  \"role_name\": \"TEST2\",\r\n  \"description\": \"TEST2\"\r\n}\r\n",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{baseUrl}}/api/roles",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"api",
+								"roles"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Delete Rol By ID",
+					"request": {
+						"method": "DELETE",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer {{accessToken}}",
+								"type": "text"
+							},
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{baseUrl}}/api/roles/929673a1-f170-497b-8f6a-680395872da5",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"api",
+								"roles",
+								"929673a1-f170-497b-8f6a-680395872da5"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Projects",
+			"item": [
+				{
+					"name": "All Projects",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer {{accessToken}}",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "{{baseUrl}}/api/projects",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"api",
+								"projects"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Test Suites and Test Case by Project",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer {{accessToken}}",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "{{baseUrl}}/api/projects/4b531af3-44c3-415d-ae2e-a2fdc125ea7c/test-suites-cases",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"api",
+								"projects",
+								"4b531af3-44c3-415d-ae2e-a2fdc125ea7c",
+								"test-suites-cases"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Project by ID",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer {{accessToken}}",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "{{baseUrl}}/api/projects/5d596002-cb2d-4d7b-b08d-e4c2e83d658e",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"api",
+								"projects",
+								"5d596002-cb2d-4d7b-b08d-e4c2e83d658e"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Udpate Project",
+					"request": {
+						"method": "PUT",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer {{accessToken}}",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n  \"name\": \"Proyecto Test 2\",\r\n  \"description\": \"Descripción actualizada del proyecto 2\"\r\n\r\n}\r\n",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{baseUrl}}/api/projects/bb80f3fa-7967-48df-995c-3ed720ce1eb2",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"api",
+								"projects",
+								"bb80f3fa-7967-48df-995c-3ed720ce1eb2"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Delete Project",
+					"request": {
+						"method": "DELETE",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer {{accessToken}}",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{baseUrl}}/api/projects/baeed565-d17f-413b-83eb-3c4f180e789b",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"api",
+								"projects",
+								"baeed565-d17f-413b-83eb-3c4f180e789b"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Create Project",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer {{accessToken}}",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n  \"name\": \"Proyecto Test 2\",\r\n  \"description\": \"Descripción actualizada del proyecto 2\",\r\n  \"created_by\": \"{{userId}}\",\r\n  \"keywords\": [\"{{keywordId}}\"]\r\n}  \r\n",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{baseUrl}}/api/projects",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"api",
+								"projects"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Keywords",
+			"item": [
+				{
+					"name": "All Keywords",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer {{accessToken}}",
+								"type": "text"
+							},
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "{{baseUrl}}/api/keywords",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"api",
+								"keywords"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Keywords by ID",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer {{accessToken}}",
+								"type": "text"
+							},
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "{{baseUrl}}/api/keywords/6b3b0eee-746e-4c73-acc1-dd7812521ca3",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"api",
+								"keywords",
+								"6b3b0eee-746e-4c73-acc1-dd7812521ca3"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Create Keyword",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer {{accessToken}}",
+								"type": "text"
+							},
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n  \"keyword_name\": \"KeyWord Example\",\r\n  \"description\": \"KeyWord Example for test\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{baseUrl}}/api/keywords",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"api",
+								"keywords"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Keywords to UUID and Table",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer {{accessToken}}",
+								"type": "text"
+							},
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n  \"uuid\": \"a57af9d3-db29-4dd2-b291-1767be700740\",\r\n  \"keywords\": [\"94304fdc-a221-431b-ac78-69d9220c7e76\"],\r\n  \"tableName\": \"projects\"\r\n}\r\n",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{baseUrl}}/api/keywords/add-to-uuid",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"api",
+								"keywords",
+								"add-to-uuid"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Update Keyword",
+					"request": {
+						"method": "PUT",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer {{accessToken}}",
+								"type": "text"
+							},
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n  \"keyword_name\": \"Palabra Clave Actualizada\",\r\n  \"description\": \"Descripción actualizada de la palabra clave\"\r\n}\r\n",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{baseUrl}}/api/keywords/:id",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"api",
+								"keywords",
+								":id"
+							],
+							"variable": [
+								{
+									"key": "id",
+									"value": ""
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Delete Keyword",
+					"request": {
+						"method": "DELETE",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer {{accessToken}}",
+								"type": "text"
+							},
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n  \"keyword_name\": \"Palabra Clave Actualizada\",\r\n  \"description\": \"Descripción actualizada de la palabra clave\"\r\n}\r\n",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{baseUrl}}/api/keywords/68f1cd53-b77e-4d9b-8e62-63465aa9fc0ess",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"api",
+								"keywords",
+								"68f1cd53-b77e-4d9b-8e62-63465aa9fc0ess"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Permissions",
+			"item": [
+				{
+					"name": "All Permissions",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer {{accessToken}}",
+								"type": "text"
+							},
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "{{baseUrl}}/api/permissions",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"api",
+								"permissions"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Permission by ID",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer {{accessToken}}",
+								"type": "text"
+							},
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "{{baseUrl}}/api/permissions/fb8b0b1e-bd19-420b-9f3b-faf48e834ff0",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"api",
+								"permissions",
+								"fb8b0b1e-bd19-420b-9f3b-faf48e834ff0"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Create Permission",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer {{accessToken}}",
+								"type": "text"
+							},
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n  \"permission_name\": \"PermisoNuevo\",\r\n  \"description\": \"Descripción del permiso nuevo\"\r\n}\r\n",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{baseUrl}}/api/permissions",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"api",
+								"permissions"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Delete Permission",
+					"request": {
+						"method": "DELETE",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer {{accessToken}}",
+								"type": "text"
+							},
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n  \"permission_name\": \"PermisoNuevo\",\r\n  \"description\": \"Descripción del permiso nuevo\"\r\n}\r\n",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{baseUrl}}/api/permissions/a6fdae32-a01c-4df4-8563-f395881f6387",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"api",
+								"permissions",
+								"a6fdae32-a01c-4df4-8563-f395881f6387"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Test Case",
+			"item": [
+				{
+					"name": "All Test Cases",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer {{accessToken}}",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "{{baseUrl}}/api/test-cases",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"api",
+								"test-cases"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Test Case by ID",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer {{accessToken}}",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "{{baseUrl}}/api/test-cases/:id",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"api",
+								"test-cases",
+								":id"
+							],
+							"variable": [
+								{
+									"key": "id",
+									"value": ""
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Create New Test Case",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer {{accessToken}}",
+								"type": "text"
+							},
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n  \"name\": \"Caso de Prueba 4\",\r\n  \"summary\": \"Este es un resumen del caso de prueba 4.\",\r\n  \"preconditions\": \"Precondiciones necesarias para el caso de prueba\",\r\n  \"importance\": \"Alta\",  // Puede ser \"Alta\", \"Media\", o \"Baja\"\r\n  \"test_suite_id\": \"8334f224-314b-459c-b166-fea915f8fafb\",  // Reemplaza con el ID real de la suite de prueba\r\n  \"created_by\": \"{{userId}}\",  // Reemplaza con el ID real del usuario creador\r\n  \"status\": \"Activo\",\r\n    // Puede ser \"Activo\" o \"Inactivo\"\r\n  \"keywords\": [\"{{keywordId}}\"]\r\n}\r\n",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{baseUrl}}/api/test-cases",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"api",
+								"test-cases"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Update Test Case",
+					"request": {
+						"method": "PUT",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer {{accessToken}}",
+								"type": "text"
+							},
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n  \"name\": \"Caso de Prueba Actualizado\",\r\n  \"summary\": \"Este es un resumen actualizado del caso de prueba.\",\r\n  \"preconditions\": \"Precondiciones actualizadas para el caso de prueba.\",\r\n  \"importance\": \"Media\",  // Puede ser \"Alta\", \"Media\", o \"Baja\"\r\n  \"test_suite_id\": \"123e4567-e89b-12d3-a456-426614174000\",  // Reemplaza con el ID real de la suite de prueba\r\n  \"created_by\": \"123e4567-e89b-12d3-a456-426614174000\",  // Reemplaza con el ID real del usuario creador\r\n  \"status\": \"Inactivo\",  // Puede ser \"Activo\" o \"Inactivo\"\r\n  \"keywords\": [\"keyword3\", \"keyword4\"]  // Reemplaza con IDs de palabras clave\r\n}\r\n",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{baseUrl}}/api/test-cases/:id",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"api",
+								"test-cases",
+								":id"
+							],
+							"variable": [
+								{
+									"key": "id",
+									"value": ""
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Delete Test Case",
+					"request": {
+						"method": "PUT",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer {{accessToken}}",
+								"type": "text"
+							},
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{baseUrl}}/api/test-cases/:id",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"api",
+								"test-cases",
+								":id"
+							],
+							"variable": [
+								{
+									"key": "id",
+									"value": ""
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get Test Cases by Test Suite",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer {{accessToken}}",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "http://localhost:3000/api/test-suites/aa96dfe9-bf99-4ee4-b1f0-ec7708ff7d1f/test-cases",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"api",
+								"test-suites",
+								"aa96dfe9-bf99-4ee4-b1f0-ec7708ff7d1f",
+								"test-cases"
+							]
+						},
+						"description": "Obtener todos los casos de prueba asociados a una test suite específica, incluyendo la jerarquía de sub-suites y pasos."
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Auth Controller",
+			"item": [
+				{
+					"name": "Login",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"// Verifica que la respuesta tenga un token de acceso\r",
+									"if (pm.response.code === 200) {\r",
+									"  const jsonData = pm.response.json();\r",
+									"  \r",
+									"  // Guarda el token en una variable de entorno llamada \"authToken\"\r",
+									"  pm.environment.set(\"accessToken\", jsonData.accessToken);\r",
+									"  \r",
+									"  console.log(\"Token guardado en variable de entorno: authToken\");\r",
+									"} else {\r",
+									"  console.log(\"Error al iniciar sesión. No se guardó ningún token.\");\r",
+									"}\r",
+									""
+								],
+								"type": "text/javascript",
+								"packages": {}
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n  \"username\": \"admin\",\r\n  \"password\": \"admin\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{baseUrl}}/api/auth/login",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"api",
+								"auth",
+								"login"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Logout",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"// Verifica que la respuesta del servidor sea un logout exitoso\r",
+									"if (pm.response.code === 200) {\r",
+									"  // Eliminar la variable de entorno 'authToken'\r",
+									"  pm.environment.unset(\"accessToken\");\r",
+									"  \r",
+									"  console.log(\"Token de autenticación eliminado de la variable de entorno: authToken\");\r",
+									"} else {\r",
+									"  console.log(\"Error al cerrar sesión. No se eliminó el token.\");\r",
+									"}\r",
+									""
+								],
+								"type": "text/javascript",
+								"packages": {}
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							},
+							{
+								"key": "Authorization",
+								"value": "Bearer {{accessToken}}",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{baseUrl}}/api/auth/logout",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"api",
+								"auth",
+								"logout"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Create Admin",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n  \"username\": \"admin\",\r\n  \"email\": \"admin@admin.com\",\r\n  \"password\": \"admin\"\r\n}\r\n",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{baseUrl}}/api/auth/create-admin",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"api",
+								"auth",
+								"create-admin"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Rol Permissions",
+			"item": [
+				{
+					"name": "Assign Permisson to Role",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer {{accessToken}}",
+								"type": "text"
+							},
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{ \r\n    \"role_id\":\"e6ee6f74-d5a1-429c-8507-844d966341c9\", \r\n    \"permission_id\":\"78d813dc-efa1-4378-bf16-5173b8b0676e\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{baseUrl}}/api/role-permissions/assign",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"api",
+								"role-permissions",
+								"assign"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Assign Permisson to Role Copy",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer {{accessToken}}",
+								"type": "text"
+							},
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{ \r\n    \"role_id\":\"e6ee6f74-d5a1-429c-8507-844d966341c9\", \r\n    \"permission_id\":\"fb8b0b1e-bd19-420b-9f3b-faf48e834ff0\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{baseUrl}}/api/role-permissions/e6ee6f74-d5a1-429c-8507-844d966341c9/permissions",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"api",
+								"role-permissions",
+								"e6ee6f74-d5a1-429c-8507-844d966341c9",
+								"permissions"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Test Case Steps",
+			"item": [
+				{
+					"name": "Get All Test Case Steps",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer {{accessToken}}",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "{{baseUrl}}/api/test-case-steps",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"api",
+								"test-case-steps"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Create Test Case Step",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer {{accessToken}}",
+								"type": "text"
+							},
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"test_case_id\": \"7564af6b-0277-4249-a733-be168e8fd6ea\",\n    \"step_number\": 2,\n    \"actions\": \"Acción a realizar 2\",\n    \"expected_results\": \"Resultados esperados 2\",\n    \"created_by\": \"36db7d93-fbf6-40c1-ba86-6caa4b61d008\"\n}"
+						},
+						"url": {
+							"raw": "{{baseUrl}}/api/test-case-steps",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"api",
+								"test-case-steps"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get Test Case Step by ID",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer {{accessToken}}",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "{{baseUrl}}/api/test-case-steps/7564af6b-0277-4249-a733-be168e8fd6ea",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"api",
+								"test-case-steps",
+								"7564af6b-0277-4249-a733-be168e8fd6ea"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get Test Case Steps by Test Case ID",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer {{accessToken}}",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "{{baseUrl}}/api/test-case-steps/by-test-case/7564af6b-0277-4249-a733-be168e8fd6ea",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"api",
+								"test-case-steps",
+								"by-test-case",
+								"7564af6b-0277-4249-a733-be168e8fd6ea"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Update Test Case Step",
+					"request": {
+						"method": "PUT",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer <token>",
+								"type": "text"
+							},
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"step_number\": 2,\n    \"actions\": \"Nueva acción a realizar\",\n    \"expected_results\": \"Nuevos resultados esperados\"\n}"
+						},
+						"url": {
+							"raw": "{{baseUrl}}/test_case_steps/:id",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"test_case_steps",
+								":id"
+							],
+							"variable": [
+								{
+									"key": "id",
+									"value": ""
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Delete Test Case Step",
+					"request": {
+						"method": "DELETE",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer <token>",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "{{baseUrl}}/test_case_steps/:id",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"test_case_steps",
+								":id"
+							],
+							"variable": [
+								{
+									"key": "id",
+									"value": ""
+								}
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Requirements",
+			"item": [
+				{
+					"name": "Get All Requirements",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer {{accessToken}}",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "{{baseUrl}}/api/requirements",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"api",
+								"requirements"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Create Requirement",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer {{accessToken}}",
+								"type": "text"
+							},
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n  \"name\": \"Requerimiento Test\",\n  \"description\": \"Descripción del requerimiento\",\n  \"created_by\": \"Productos\",\n  \"keywords\": [\"{{keywordId}}\"]\n}"
+						},
+						"url": {
+							"raw": "{{baseUrl}}/api/requirements",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"api",
+								"requirements"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get Requirement by ID",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer {{accessToken}}",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "{{baseUrl}}/api/requirements/:id",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"api",
+								"requirements",
+								":id"
+							],
+							"variable": [
+								{
+									"key": "id",
+									"value": ""
+								}
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Test Plans",
+			"item": [
+				{
+					"name": "Get All Test Plans",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer {{accessToken}}",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "{{baseUrl}}/api/test-plans",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"api",
+								"test-plans"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Create Test Plan",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer {{accessToken}}",
+								"type": "text"
+							},
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n  \"name\": \"Plan de Pruebas Test 1\",\n  \"description\": \"Descripción del plan de prueba test 1\",\n  \"requirement_id\": \"{{requierement_id}}\",\n  \"build_id\": \"{{build_id}}\",\n  \"created_by\": \"{{userId}}\",\n  \"keywords\": [\"{{keywordId}}\"]\n}"
+						},
+						"url": {
+							"raw": "{{baseUrl}}/api/test-plans",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"api",
+								"test-plans"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get Test Plan By ID",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer {{accessToken}}",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "{{baseUrl}}/api/test-plans/b82bcdcc-0008-4539-9808-417ab52c1bdf",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"api",
+								"test-plans",
+								"b82bcdcc-0008-4539-9808-417ab52c1bdf"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Update Test Plan",
+					"request": {
+						"method": "PUT",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer {{token}}",
+								"type": "text"
+							},
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n  \"name\": \"Plan de Prueba Actualizado\",\n  \"description\": \"Nueva descripción\",\n  \"requirement_id\": \"{{requirement_id}}\",\n  \"build_id\": \"{{build_id}}\",\n  \"keywords\": [\"keyword3\", \"keyword4\"]\n}"
+						},
+						"url": {
+							"raw": "{{baseUrl}}/api/test-plans/:id",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"api",
+								"test-plans",
+								":id"
+							],
+							"variable": [
+								{
+									"key": "id",
+									"value": "{{test_plan_id}}"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Delete Test Plan",
+					"request": {
+						"method": "DELETE",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer {{token}}",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "{{baseUrl}}/api/test-plans/:id",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"api",
+								"test-plans",
+								":id"
+							],
+							"variable": [
+								{
+									"key": "id",
+									"value": "{{test_plan_id}}"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get Test Cases by Test Plan ID",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer {{accessToken}}",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "{{baseUrl}}/api/test-plans/{{testplan_id}}/test-cases",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"api",
+								"test-plans",
+								"{{testplan_id}}",
+								"test-cases"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Add Test Cases to Test Plan",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer {{accessToken}}",
+								"type": "text"
+							},
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n  \"test_case_ids\": [\"0b46474b-4705-4026-9017-d71fb1f0ae10\"]\n}"
+						},
+						"url": {
+							"raw": "{{baseUrl}}/api/test-plans/{{testplan_id}}/test-cases",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"api",
+								"test-plans",
+								"{{testplan_id}}",
+								"test-cases"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Builds",
+			"item": [
+				{
+					"name": "Get All Builds",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer {{accessToken}}",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "{{baseUrl}}/api/builds",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"api",
+								"builds"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Create Build",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer {{accessToken}}",
+								"type": "text"
+							},
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"version\": \"1.0.0\",\n    \"release_date\": \"2024-09-15\",\n    \"tech_leader\": \"John Doe\",\n    \"created_by\": \"{{userId}}\",\n    \"keywords\": [\"{{keywordId}}\"]\n}"
+						},
+						"url": {
+							"raw": "{{baseUrl}}/api/builds",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"api",
+								"builds"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get Build By ID",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer {{accessToken}}",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "{{baseUrl}}/api/builds/7ba8f07a-65e5-4cf4-aa84-c6012d584c98",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"api",
+								"builds",
+								"7ba8f07a-65e5-4cf4-aa84-c6012d584c98"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Update Build",
+					"request": {
+						"method": "PUT",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer {{token}}",
+								"type": "text"
+							},
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"version\": \"1.0.1\",\n    \"release_date\": \"2024-09-16\",\n    \"tech_leader\": \"Jane Doe\",\n    \"created_by\": \"<user_id>\",\n    \"keywords\": [\"<keyword_id>\", \"<keyword_id>\"]\n}"
+						},
+						"url": {
+							"raw": "{{baseUrl}}/api/builds/:id",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"api",
+								"builds",
+								":id"
+							],
+							"variable": [
+								{
+									"key": "id",
+									"value": "<build_id>"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Delete Build",
+					"request": {
+						"method": "DELETE",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer {{token}}",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "{{baseUrl}}/api/builds/:id",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"api",
+								"builds",
+								":id"
+							],
+							"variable": [
+								{
+									"key": "id",
+									"value": "<build_id>"
+								}
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Test Suites",
+			"item": [
+				{
+					"name": "Get All Test Suites",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer {{accessToken}}",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "{{baseUrl}}/api/test-suites",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"api",
+								"test-suites"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Create Test Suite",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							},
+							{
+								"key": "Authorization",
+								"value": "Bearer {{accessToken}}",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n  \"name\": \"Suite de Prueba 1.2\",\n  \"description\": \"Descripción de la suite 1.2\",\n  \"project_id\": \"5d596002-cb2d-4d7b-b08d-e4c2e83d658e\",\n  \"parent_suite_id\": \"aa96dfe9-bf99-4ee4-b1f0-ec7708ff7d1f\",\n  \"created_by\": \"{{userId}}\",\n  \"keywords\": [\"{{keywordId}}\"]\n}"
+						},
+						"url": {
+							"raw": "{{baseUrl}}/api/test-suites",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"api",
+								"test-suites"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get Test Suite by ID",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer {{accessToken}}",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "{{baseUrl}}/api/test-suites/8334f224-314b-459c-b166-fea915f8fafb",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"api",
+								"test-suites",
+								"8334f224-314b-459c-b166-fea915f8fafb"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get Test Suites by Project ID",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer {{accessToken}}",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "{{baseUrl}}/api/test-suites/project/5d596002-cb2d-4d7b-b08d-e4c2e83d658e",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"api",
+								"test-suites",
+								"project",
+								"5d596002-cb2d-4d7b-b08d-e4c2e83d658e"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get Test Suites by Parent Suite ID",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer {{accessToken}}",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "{{baseUrl}}/api/test-suites/parent/aa96dfe9-bf99-4ee4-b1f0-ec7708ff7d1f",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"api",
+								"test-suites",
+								"parent",
+								"aa96dfe9-bf99-4ee4-b1f0-ec7708ff7d1f"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Delete Test Suite",
+					"request": {
+						"method": "DELETE",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer <your_token>",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "{{base_url}}/test-suites/:id",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"test-suites",
+								":id"
+							],
+							"variable": [
+								{
+									"key": "id",
+									"value": "<test_suite_id>"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Associate Test Suite",
+					"request": {
+						"method": "PUT",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							},
+							{
+								"key": "Authorization",
+								"value": "Bearer <your_token>",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n  \"parent_suite_id\": \"<parent_suite_id>\",\n  \"child_suite_id\": \"<child_suite_id>\"\n}"
+						},
+						"url": {
+							"raw": "{{base_url}}/test-suites/associate",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"test-suites",
+								"associate"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get Test Cases by Test Suite",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer {{accessToken}}",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "{{baseUrl}}/api/test-suites/aa96dfe9-bf99-4ee4-b1f0-ec7708ff7d1f/test-cases",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"api",
+								"test-suites",
+								"aa96dfe9-bf99-4ee4-b1f0-ec7708ff7d1f",
+								"test-cases"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Execution Cycles",
+			"item": [
+				{
+					"name": "Create Execution Cycle",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n  \"test_plan_id\": \"{{testPlanId}}\",\n  \"execution_date\": \"2024-09-15\",\n  \"executed_by\": \"{{userId}}\"\n}"
+						},
+						"url": {
+							"raw": "{{baseUrl}}/api/execution-cycles",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"api",
+								"execution-cycles"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Update Test Case Execution",
+					"request": {
+						"method": "PUT",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							},
+							{
+								"key": "Authorization",
+								"value": "Bearer {{accessToken}}",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n  \"execution_cycle_id\": \"e2190ebb-089f-44f7-9ef1-d6022cf38f19\", // Reemplaza con un ID válido\n  \"test_case_id\": \"73e73884-bea3-42f1-9b70-101cefb62cdf\", // Reemplaza con un ID válido\n  \"status_name\": \"Completado\",  // Cambia al estado deseado\n  \"executed_by\": \"cecf2275-a336-4cd0-8781-a9702d7275f6\" // Reemplaza con un ID válido de usuario\n}\n\n"
+						},
+						"url": {
+							"raw": "{{baseUrl}}/api/execution-cycles/update-test-case",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"api",
+								"execution-cycles",
+								"update-test-case"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Delete Execution Cycle",
+					"request": {
+						"method": "DELETE",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "{{baseUrl}}/api/execution-cycles/{{executionCycleId}}",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"api",
+								"execution-cycles",
+								"{{executionCycleId}}"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Update Execution Cycle",
+					"request": {
+						"method": "PUT",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n  \"test_plan_id\": \"{{testPlanId}}\",\n  \"execution_date\": \"2024-09-15\",\n  \"executed_by\": \"{{userId}}\",\n  \"status_id\": 1\n}"
+						},
+						"url": {
+							"raw": "{{baseUrl}}/api/execution-cycles/e2190ebb-089f-44f7-9ef1-d6022cf38f19",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"api",
+								"execution-cycles",
+								"e2190ebb-089f-44f7-9ef1-d6022cf38f19"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Delete Test Case From Execution Cycle",
+					"request": {
+						"method": "DELETE",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n  \"execution_cycle_id\": \"{{executionCycleId}}\",\n  \"test_case_id\": \"{{testCaseId}}\"\n}"
+						},
+						"url": {
+							"raw": "{{baseUrl}}/api/execution-cycles/delete-test-case",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"api",
+								"execution-cycles",
+								"delete-test-case"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get Execution Summary by Test Plan ID",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							},
+							{
+								"key": "Authorization",
+								"value": "Bearer {{accessToken}}",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "{{baseUrl}}/api/execution-cycles/summary/b82bcdcc-0008-4539-9808-417ab52c1bdf",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"api",
+								"execution-cycles",
+								"summary",
+								"b82bcdcc-0008-4539-9808-417ab52c1bdf"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		}
+	]
+}
