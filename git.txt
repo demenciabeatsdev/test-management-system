@@ -1,0 +1,18 @@
+# 1. Inicializar Git y hacer el primer commit
+git init
+git add .
+git commit -m "Initial commit"
+
+# 2. Crear una rama para los cambios iniciales
+git checkout -b feature-initial-setup
+
+# 3. Agregar el repositorio remoto
+git remote add origin https://github.com/demenciabeatsdev/test-management-system.git
+
+# 4. Subir la rama de cambios iniciales a GitHub
+git push -u origin feature-initial-setup
+
+# 5. Crear y subir la rama main
+git checkout -b main
+git merge feature-initial-setup
+git push -u origin main
