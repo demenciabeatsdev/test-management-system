@@ -10,7 +10,6 @@ const getAllTestCaseSteps = async (req, res) => {
     res.status(500).json({ message: 'Error al obtener pasos de casos de prueba' });
   }
 };
-
 // Crear un nuevo paso de caso de prueba
 const createTestCaseStep = async (req, res) => {
   const { test_case_id, step_number, actions, expected_results, created_by } = req.body; // Obtener los datos del cuerpo de la solicitud
@@ -29,7 +28,6 @@ const createTestCaseStep = async (req, res) => {
     }
   }
 };
-
 // Obtener un paso de caso de prueba por ID
 const getTestCaseStepById = async (req, res) => {
   const { id } = req.params; // Obtener el ID del paso de caso de prueba de los parámetros de la solicitud
@@ -44,7 +42,6 @@ const getTestCaseStepById = async (req, res) => {
     res.status(500).json({ message: 'Error al obtener paso de caso de prueba' });
   }
 };
-
 // Obtener todos los pasos de casos de prueba por el ID del caso de prueba
 const getTestCaseStepsByTestCaseId = async (req, res) => {
   const { test_case_id } = req.params; // Obtener el ID del caso de prueba de los parámetros de la solicitud
@@ -59,7 +56,6 @@ const getTestCaseStepsByTestCaseId = async (req, res) => {
     res.status(500).json({ message: 'Error al obtener pasos de caso de prueba por ID de caso de prueba' });
   }
 };
-
 // Actualizar un paso de caso de prueba existente
 const updateTestCaseStep = async (req, res) => {
   const { id } = req.params; // Obtener el ID del paso de caso de prueba de los parámetros de la solicitud
@@ -82,7 +78,6 @@ const updateTestCaseStep = async (req, res) => {
     }
   }
 };
-
 // Eliminar un paso de caso de prueba existente
 const deleteTestCaseStep = async (req, res) => {
   const { id } = req.params; // Obtener el ID del paso de caso de prueba de los parámetros de la solicitud

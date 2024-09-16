@@ -10,7 +10,6 @@ const getAllProjects = async (req, res) => {
     res.status(500).json({ message: 'Error al obtener proyectos' });
   }
 };
-
 // Crear un nuevo proyecto con keywords
 const createProject = async (req, res) => {
   const { name, description, created_by, keywords } = req.body; // Obtener los datos del cuerpo de la solicitud, incluyendo keywords como array de UUIDs
@@ -28,7 +27,6 @@ const createProject = async (req, res) => {
     res.status(500).json({ message: 'Error al crear proyecto' });
   }
 };
-
 // Obtener un proyecto por ID
 const getProjectById = async (req, res) => {
   const { id } = req.params; // Obtener el ID del proyecto de los parámetros de la solicitud
@@ -43,8 +41,6 @@ const getProjectById = async (req, res) => {
     res.status(500).json({ message: 'Error al obtener proyecto' });
   }
 };
-
-
 // Obtener todas las test suites, test suites hijas y sus test cases asociados por Project ID
 const getTestSuitesAndCasesByProjectId = async (req, res) => {
   const { id } = req.params; // Obtener el ID del proyecto de los parámetros de la solicitud
@@ -144,7 +140,6 @@ const getTestSuitesAndCasesByProjectId = async (req, res) => {
     res.status(500).json({ message: 'Error al obtener test suites y casos de prueba por ID de proyecto' });
   }
 };
-
 // Actualizar un proyecto existente con keywords
 const updateProject = async (req, res) => {
   const { id } = req.params; // Obtener el ID del proyecto de los parámetros de la solicitud
@@ -166,7 +161,6 @@ const updateProject = async (req, res) => {
     res.status(500).json({ message: 'Error al actualizar proyecto' });
   }
 };
-
 // Eliminar un proyecto existente
 const deleteProject = async (req, res) => {
   const { id } = req.params; // Obtener el ID del proyecto de los parámetros de la solicitud

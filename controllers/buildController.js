@@ -10,7 +10,6 @@ const getAllBuilds = async (req, res) => {
     res.status(500).json({ message: 'Error al obtener builds' });
   }
 };
-
 // Crear un nuevo build
 const createBuild = async (req, res) => {
   const { version, release_date, tech_leader, created_by, keywords } = req.body;
@@ -25,7 +24,6 @@ const createBuild = async (req, res) => {
     res.status(500).json({ message: 'Error al crear build' });
   }
 };
-
 // Obtener un build por ID
 const getBuildById = async (req, res) => {
   const { id } = req.params;
@@ -40,7 +38,6 @@ const getBuildById = async (req, res) => {
     res.status(500).json({ message: 'Error al obtener build' });
   }
 };
-
 // Actualizar un build existente
 const updateBuild = async (req, res) => {
   const { id } = req.params;
@@ -59,7 +56,6 @@ const updateBuild = async (req, res) => {
     res.status(500).json({ message: 'Error al actualizar build' });
   }
 };
-
 // Eliminar un build existente
 const deleteBuild = async (req, res) => {
   const { id } = req.params;
@@ -74,7 +70,6 @@ const deleteBuild = async (req, res) => {
     res.status(500).json({ message: 'Error al eliminar build' });
   }
 };
-
 module.exports = {
   getAllBuilds,
   createBuild,

@@ -10,7 +10,6 @@ const getAllRoles = async (req, res) => {
     res.status(500).json({ message: 'Error al obtener roles' });
   }
 };
-
 // Crear un nuevo rol
 const createRole = async (req, res) => {
   const { role_name, description } = req.body;
@@ -28,7 +27,6 @@ const createRole = async (req, res) => {
     res.status(500).json({ message: 'Error al crear rol' });
   }
 };
-
 // Eliminar un rol
 const deleteRole = async (req, res) => {
   const { id } = req.params;

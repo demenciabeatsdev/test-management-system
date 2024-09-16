@@ -10,7 +10,6 @@ const getAllTestPlans = async (req, res) => {
     res.status(500).json({ message: 'Error al obtener planes de prueba' });
   }
 };
-
 // Crear un nuevo plan de prueba
 const createTestPlan = async (req, res) => {
   const { name, description, requirement_id, build_id, created_by, keywords } = req.body; // Obtener los datos del cuerpo de la solicitud
@@ -25,7 +24,6 @@ const createTestPlan = async (req, res) => {
     res.status(500).json({ message: 'Error al crear plan de prueba' });
   }
 };
-
 // Obtener un plan de prueba por ID con detalles completos
 const getTestPlanById = async (req, res) => {
   const { id } = req.params; // Obtener el ID del plan de prueba de los parámetros de la solicitud
@@ -40,7 +38,6 @@ const getTestPlanById = async (req, res) => {
     res.status(500).json({ message: 'Error al obtener plan de prueba' });
   }
 };
-
 // Actualizar un plan de prueba existente
 const updateTestPlan = async (req, res) => {
   const { id } = req.params; // Obtener el ID del plan de prueba de los parámetros de la solicitud
@@ -59,7 +56,6 @@ const updateTestPlan = async (req, res) => {
     res.status(500).json({ message: 'Error al actualizar plan de prueba' });
   }
 };
-
 // Eliminar un plan de prueba existente
 const deleteTestPlan = async (req, res) => {
   const { id } = req.params; // Obtener el ID del plan de prueba de los parámetros de la solicitud
@@ -74,7 +70,6 @@ const deleteTestPlan = async (req, res) => {
     res.status(500).json({ message: 'Error al eliminar plan de prueba' });
   }
 };
-
 // Obtener todos los casos de prueba asociados a un plan de prueba
 const getTestCasesByTestPlan = async (req, res) => {
   const { id } = req.params; // Obtener el ID del plan de prueba de los parámetros de la solicitud
@@ -104,7 +99,6 @@ const getTestCasesByTestPlan = async (req, res) => {
     res.status(500).json({ message: 'Error al obtener casos de prueba por plan de prueba' });
   }
 };
-
 // Asociar uno o más casos de prueba a un plan de prueba
 const addTestCasesToTestPlan = async (req, res) => {
   const { id } = req.params; // Obtener el ID del plan de prueba de los parámetros de la solicitud

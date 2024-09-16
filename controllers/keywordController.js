@@ -10,7 +10,6 @@ const getAllKeywords = async (req, res) => {
     res.status(500).json({ message: 'Error al obtener keywords' });
   }
 };
-
 // Crear una nueva keyword
 const createKeyword = async (req, res) => {
   const { keyword_name, description } = req.body; // Obtener los datos del cuerpo de la solicitud
@@ -28,7 +27,6 @@ const createKeyword = async (req, res) => {
     res.status(500).json({ message: 'Error al crear keyword' });
   }
 };
-
 // Obtener una keyword por ID
 const getKeywordById = async (req, res) => {
   const { id } = req.params; // Obtener el ID de la keyword de los parámetros de la solicitud
@@ -43,7 +41,6 @@ const getKeywordById = async (req, res) => {
     res.status(500).json({ message: 'Error al obtener keyword' });
   }
 };
-
 // Actualizar una keyword existente
 const updateKeyword = async (req, res) => {
   const { id } = req.params; // Obtener el ID de la keyword de los parámetros de la solicitud
@@ -65,7 +62,6 @@ const updateKeyword = async (req, res) => {
     res.status(500).json({ message: 'Error al actualizar keyword' });
   }
 };
-
 // Eliminar una keyword existente
 const deleteKeyword = async (req, res) => {
   const { id } = req.params; // Obtener el ID de la keyword de los parámetros de la solicitud
@@ -80,7 +76,6 @@ const deleteKeyword = async (req, res) => {
     res.status(500).json({ message: 'Error al eliminar keyword' });
   }
 };
-
 // Agregar múltiples keywords a un campo de keywords en una tabla específica
 const addKeywordsToUUID = async (req, res) => {
   const { uuid, keywords, tableName } = req.body; // Obtener el UUID, las keywords y el nombre de la tabla desde el cuerpo de la solicitud

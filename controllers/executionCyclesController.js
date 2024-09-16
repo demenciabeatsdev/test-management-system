@@ -173,7 +173,6 @@ const updateExecutionCycle = async (req, res) => {
     res.status(500).json({ message: 'Error al actualizar ciclo de ejecución' });
   }
 };
-
 /**
  * Elimina un caso de prueba específico de un ciclo de ejecución.
  */
@@ -260,7 +259,6 @@ const getExecutionSummaryByTestPlanId = async (req, res) => {
     res.status(500).json({ message: 'Error al obtener resumen de ejecución.' });
   }
 };
-
 
 module.exports = {
   createExecutionCycle,

@@ -14,7 +14,6 @@ const assignPermissionToRole = async (req, res) => {
     res.status(500).json({ message: 'Error al asignar permiso al rol' });
   }
 };
-
 // Obtener todos los permisos de un rol
 const getPermissionsByRole = async (req, res) => {
   const { role_id } = req.params;

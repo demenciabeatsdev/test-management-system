@@ -13,8 +13,8 @@ const testCaseStepsRoutes = require('./routes/testCaseStepsRoutes');
 const testPlanRoutes = require('./routes/testPlanRoutes');
 const testSuiteRoutes = require('./routes/testSuiteRoutes');
 const executionCyclesRoutes = require('./routes/executionCyclesRoutes');
-const requirementRoutes = require('./routes/requirementRoutes'); // Rutas de Requerimientos
-const buildRoutes = require('./routes/buildRoutes'); // Rutas de Builds
+const requirementRoutes = require('./routes/requirementRoutes');
+const buildRoutes = require('./routes/buildRoutes');
 
 // Middleware para parsear JSON
 app.use(express.json());

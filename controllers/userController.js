@@ -11,7 +11,6 @@ const getAllUsers = async (req, res) => {
     res.status(500).json({ message: 'Error al obtener usuarios' }); // Devuelve error al cliente
   }
 };
-
 // Crear un nuevo usuario
 const createUser = async (req, res) => {
   const { username, email, password_hash, role_id } = req.body; // Obtén los datos del cuerpo de la solicitud
@@ -32,7 +31,6 @@ const createUser = async (req, res) => {
     res.status(500).json({ message: 'Error al crear usuario' }); // Devuelve error al cliente
   }
 };
-
 // Obtener un usuario por ID
 const getUserById = async (req, res) => {
   const { id } = req.params; // Obtén el ID del usuario de los parámetros de la solicitud
@@ -47,7 +45,6 @@ const getUserById = async (req, res) => {
     res.status(500).json({ message: 'Error al obtener usuario' }); // Devuelve error al cliente
   }
 };
-
 // Actualizar un usuario existente
 const updateUser = async (req, res) => {
   const { id } = req.params; // Obtén el ID del usuario de los parámetros de la solicitud
@@ -69,7 +66,6 @@ const updateUser = async (req, res) => {
     res.status(500).json({ message: 'Error al actualizar usuario' }); // Devuelve error al cliente
   }
 };
-
 // Eliminar un usuario existente
 const deleteUser = async (req, res) => {
   const { id } = req.params; // Obtén el ID del usuario de los parámetros de la solicitud

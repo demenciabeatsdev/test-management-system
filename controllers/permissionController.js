@@ -10,7 +10,6 @@ const getAllPermissions = async (req, res) => {
     res.status(500).json({ message: 'Error al obtener permisos' });
   }
 };
-
 // Crear un nuevo permiso
 const createPermission = async (req, res) => {
   const { permission_name, description } = req.body; // Obtener los datos del cuerpo de la solicitud
@@ -28,7 +27,6 @@ const createPermission = async (req, res) => {
     res.status(500).json({ message: 'Error al crear permiso' });
   }
 };
-
 // Obtener un permiso por ID
 const getPermissionById = async (req, res) => {
   const { id } = req.params; // Obtener el ID del permiso de los parámetros de la solicitud
@@ -43,7 +41,6 @@ const getPermissionById = async (req, res) => {
     res.status(500).json({ message: 'Error al obtener permiso' });
   }
 };
-
 // Eliminar un permiso
 const deletePermission = async (req, res) => {
   const { id } = req.params; // Obtener el ID del permiso de los parámetros de la solicitud

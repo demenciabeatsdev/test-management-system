@@ -10,7 +10,6 @@ const getAllTestSuites = async (req, res) => {
     res.status(500).json({ message: 'Error al obtener test suites' });
   }
 };
-
 // Crear una nueva Test Suite
 const createTestSuite = async (req, res) => {
   const { name, description, project_id, parent_suite_id, created_by, keywords } = req.body; // Obtener los datos del cuerpo de la solicitud
@@ -25,7 +24,6 @@ const createTestSuite = async (req, res) => {
     res.status(500).json({ message: 'Error al crear test suite' });
   }
 };
-
 // Obtener una Test Suite por ID
 const getTestSuiteById = async (req, res) => {
   const { id } = req.params; // Obtener el ID de la test suite de los parámetros de la solicitud
@@ -40,7 +38,6 @@ const getTestSuiteById = async (req, res) => {
     res.status(500).json({ message: 'Error al obtener test suite' });
   }
 };
-
 // Obtener todas las Test Suites por Proyecto ID
 const getTestSuitesByProjectId = async (req, res) => {
   const { project_id } = req.params; // Obtener el ID del proyecto de los parámetros de la solicitud
@@ -109,7 +106,6 @@ const getTestSuitesByProjectId = async (req, res) => {
     res.status(500).json({ message: 'Error al obtener test suites por ID de proyecto' });
   }
 };
-
 // Obtener todas las Test Suites por Test Suite Parent ID
 const getTestSuitesByParentSuiteId = async (req, res) => {
   const { parent_suite_id } = req.params; // Obtener el ID de la test suite padre de los parámetros de la solicitud
@@ -124,7 +120,6 @@ const getTestSuitesByParentSuiteId = async (req, res) => {
     res.status(500).json({ message: 'Error al obtener test suites por ID de test suite padre' });
   }
 };
-
 // Eliminar una Test Suite existente
 const deleteTestSuite = async (req, res) => {
   const { id } = req.params; // Obtener el ID de la test suite de los parámetros de la solicitud
@@ -139,7 +134,6 @@ const deleteTestSuite = async (req, res) => {
     res.status(500).json({ message: 'Error al eliminar test suite' });
   }
 };
-
 // Asociar una Test Suite hija a una Test Suite padre existente
 const associateTestSuite = async (req, res) => {
   const { parent_suite_id, child_suite_id } = req.body; // Obtener los IDs de la test suite padre e hija del cuerpo de la solicitud
@@ -157,7 +151,6 @@ const associateTestSuite = async (req, res) => {
     res.status(500).json({ message: 'Error al asociar test suite' });
   }
 };
-
 const getTestCasesByTestSuite = async (req, res) => {
   const { id } = req.params; // Obtener el ID de la test suite de los parámetros de la solicitud
   console.log("ID de la suite:", id);
@@ -222,7 +215,6 @@ const getTestCasesByTestSuite = async (req, res) => {
     res.status(500).json({ message: 'Error al obtener casos de prueba por test suite' });
   }
 };
-
 function buildHierarchy(rows) {
   const suitesMap = {};
 
@@ -276,5 +268,5 @@ module.exports = {
   getTestSuitesByParentSuiteId,
   deleteTestSuite,
   associateTestSuite,
-  getTestCasesByTestSuite, // Nueva función exportada
+  getTestCasesByTestSuite,
 };

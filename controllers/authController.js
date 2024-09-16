@@ -60,7 +60,6 @@ const loginUser = async (req, res) => {
     res.status(500).json({ message: 'Error al iniciar sesión' });  // Manejar errores
   }
 };
-
 // Función de logout (cerrar sesión)
 const logoutUser = async (req, res) => {
   const authHeader = req.headers['authorization'];
@@ -85,7 +84,6 @@ const logoutUser = async (req, res) => {
     res.status(500).json({ message: 'Error al cerrar sesión' });  // Manejar errores
   }
 };
-
 // Función para crear el primer usuario administrador (para uso temporal)
 const createFirstAdminUser = async (req, res) => {
   const { username, email, password } = req.body;

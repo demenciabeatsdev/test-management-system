@@ -10,7 +10,6 @@ const getAllRequirements = async (req, res) => {
     res.status(500).json({ message: 'Error al obtener requerimientos' });
   }
 };
-
 // Crear un nuevo requerimiento
 const createRequirement = async (req, res) => {
   const { name, description, created_by, keywords } = req.body;
@@ -25,7 +24,6 @@ const createRequirement = async (req, res) => {
     res.status(500).json({ message: 'Error al crear requerimiento' });
   }
 };
-
 // Obtener un requerimiento por ID
 const getRequirementById = async (req, res) => {
   const { id } = req.params;
@@ -40,7 +38,6 @@ const getRequirementById = async (req, res) => {
     res.status(500).json({ message: 'Error al obtener requerimiento' });
   }
 };
-
 // Actualizar un requerimiento existente
 const updateRequirement = async (req, res) => {
   const { id } = req.params;
@@ -59,7 +56,6 @@ const updateRequirement = async (req, res) => {
     res.status(500).json({ message: 'Error al actualizar requerimiento' });
   }
 };
-
 // Eliminar un requerimiento existente
 const deleteRequirement = async (req, res) => {
   const { id } = req.params;

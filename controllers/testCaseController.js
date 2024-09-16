@@ -10,7 +10,6 @@ const getAllTestCases = async (req, res) => {
     res.status(500).json({ message: 'Error al obtener casos de prueba' });
   }
 };
-
 // Crear un nuevo Caso de Prueba
 const createTestCase = async (req, res) => {
   const { name, summary, preconditions, importance, test_suite_id, created_by, status, keywords } = req.body; // Obtener los datos del cuerpo de la solicitud
@@ -25,7 +24,6 @@ const createTestCase = async (req, res) => {
     res.status(500).json({ message: 'Error al crear caso de prueba' });
   }
 };
-
 // Obtener un Caso de Prueba por ID
 const getTestCaseById = async (req, res) => {
   const { id } = req.params; // Obtener el ID del caso de prueba de los parámetros de la solicitud
@@ -40,7 +38,6 @@ const getTestCaseById = async (req, res) => {
     res.status(500).json({ message: 'Error al obtener caso de prueba' });
   }
 };
-
 // Obtener todos los Casos de Prueba por Test Suite ID
 const getTestCasesByTestSuiteId = async (req, res) => {
   const { test_suite_id } = req.params; // Obtener el ID de la test suite de los parámetros de la solicitud
@@ -55,7 +52,6 @@ const getTestCasesByTestSuiteId = async (req, res) => {
     res.status(500).json({ message: 'Error al obtener casos de prueba por ID de test suite' });
   }
 };
-
 // Actualizar un Caso de Prueba existente
 const updateTestCase = async (req, res) => {
   const { id } = req.params; // Obtener el ID del caso de prueba de los parámetros de la solicitud
@@ -74,7 +70,6 @@ const updateTestCase = async (req, res) => {
     res.status(500).json({ message: 'Error al actualizar caso de prueba' });
   }
 };
-
 // Eliminar un Caso de Prueba existente
 const deleteTestCase = async (req, res) => {
   const { id } = req.params; // Obtener el ID del caso de prueba de los parámetros de la solicitud
@@ -94,7 +89,7 @@ module.exports = {
   getAllTestCases,
   createTestCase,
   getTestCaseById,
-  getTestCasesByTestSuiteId,  // Nueva función añadida
-  updateTestCase,  // Nueva función añadida
-  deleteTestCase,  // Nueva función añadida
+  getTestCasesByTestSuiteId,
+  updateTestCase,
+  deleteTestCase,
 };
