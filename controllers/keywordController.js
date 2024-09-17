@@ -81,7 +81,7 @@ const addKeywordsToUUID = async (req, res) => {
   const { uuid, keywords, tableName } = req.body; // Obtener el UUID, las keywords y el nombre de la tabla desde el cuerpo de la solicitud
 
   // Verificar que el nombre de la tabla sea uno permitido
-  const validTables = ['projects', 'test_suites']; // Definir las tablas válidas que pueden contener el campo de keywords
+  const validTables = ['projects', 'test_suites','test_plan','test_cases','requirements']; // Definir las tablas válidas que pueden contener el campo de keywords
   if (!validTables.includes(tableName)) {
     return res.status(400).json({ message: `Nombre de tabla inválido. Solo se permiten las tablas: ${validTables.join(', ')}.` });
   }

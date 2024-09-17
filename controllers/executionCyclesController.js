@@ -259,6 +259,104 @@ const getExecutionSummaryByTestPlanId = async (req, res) => {
     res.status(500).json({ message: 'Error al obtener resumen de ejecución.' });
   }
 };
+const executeMultipleTestCases = async (req, res) => {
+  const { execution_cycle_id, test_cases, executed_by } = req.body; // Obtener IDs de test_cases, ciclo de ejecución y usuario ejecutante
+  const client = await db.getClient();
+
+  try {
+    await client.query('BEGIN');
+
+    // Validar que todos los casos de prueba estén asociados con el ciclo de ejecución
+    const validateTestCasesQuery = `
+      SELECT test_case_id
+      FROM test_case_execution
+      WHERE execution_cycle_id = $1 AND test_case_id = ANY($2::uuid[]);
+    `;
+    const { rows: validTestCases } = await client.query(validateTestCasesQuery, [execution_cycle_id, test_cases.map(tc => tc.test_case_id)]);
+
+    const validTestCaseIds = validTestCases.map(tc => tc.test_case_id);
+    const invalidTestCases = test_cases.filter(tc => !validTestCaseIds.includes(tc.test_case_id));
+
+    if (invalidTestCases.length > 0) {
+      return res.status(400).json({
+        message: 'Algunos casos de prueba no están asociados con el ciclo de ejecución especificado.',
+        invalidTestCases: invalidTestCases.map(tc => tc.test_case_id)
+      });
+    }
+
+    // Para cada caso de prueba, asigna el estado correspondiente
+    const updateQueries = test_cases.map(async (testCase) => {
+      const { test_case_id, status_name } = testCase; // Obtener el ID del caso de prueba y el estado
+
+      const executeTestCaseQuery = `
+        UPDATE test_case_execution
+        SET status_id = (SELECT id FROM execution_status WHERE status_name = $1),
+            executed_by = $2,
+            start_time = COALESCE(start_time, NOW()), 
+            end_time = CASE WHEN $1 IN ('Completado', 'Fallido') THEN NOW() ELSE end_time END,
+            logs = COALESCE(logs, '{}'::json),
+            updated_at = NOW()
+        WHERE execution_cycle_id = $3 AND test_case_id = $4
+        RETURNING *;
+      `;
+
+      return await client.query(executeTestCaseQuery, [status_name, executed_by, execution_cycle_id, test_case_id]);
+    });
+
+    // Ejecutar todas las actualizaciones de casos de prueba
+    const results = await Promise.all(updateQueries);
+
+    // Verificar el estado de todos los casos de prueba del ciclo
+    const checkAllCasesQuery = `
+      SELECT COUNT(*) AS total_cases,
+             COUNT(*) FILTER (WHERE status_id = (SELECT id FROM execution_status WHERE status_name = 'Completado')) AS completed_count,
+             COUNT(*) FILTER (WHERE status_id = (SELECT id FROM execution_status WHERE status_name = 'Fallido')) AS failed_count,
+             COUNT(*) FILTER (WHERE status_id = (SELECT id FROM execution_status WHERE status_name = 'Pendiente')) AS pending_count,
+             COUNT(*) FILTER (WHERE status_id NOT IN ((SELECT id FROM execution_status WHERE status_name IN ('Completado', 'Fallido', 'Pendiente')))) AS in_progress_count
+      FROM test_case_execution 
+      WHERE execution_cycle_id = $1;
+    `;
+    const allCasesResult = await client.query(checkAllCasesQuery, [execution_cycle_id]);
+
+    const { total_cases, completed_count, failed_count, pending_count, in_progress_count } = allCasesResult.rows[0];
+
+    // Determinar el nuevo estado del ciclo de ejecución
+    let newCycleStatus = null;
+    if (parseInt(completed_count) + parseInt(failed_count) === parseInt(total_cases)) {
+      // Todos los casos de prueba están "Completados" o "Fallidos"
+      newCycleStatus = 'Completado';
+    } else if (parseInt(pending_count) > 0) {
+      // Hay al menos un caso de prueba "Pendiente"
+      newCycleStatus = 'Pendiente';
+    } else if (parseInt(in_progress_count) > 0) {
+      // Hay al menos un caso de prueba que está "En Progreso" o en otro estado
+      newCycleStatus = 'En Progreso';
+    }
+
+    // Actualizar el estado del ciclo de ejecución si es necesario
+    if (newCycleStatus) {
+      const updateCycleStatusQuery = `
+        UPDATE execution_cycles
+        SET status_id = (SELECT id FROM execution_status WHERE status_name = $1)
+        WHERE id = $2
+        RETURNING *;
+      `;
+      await client.query(updateCycleStatusQuery, [newCycleStatus, execution_cycle_id]);
+    }
+
+    await client.query('COMMIT');
+
+    // Responder con los resultados de las actualizaciones
+    res.status(200).json(results.map(result => result.rows[0]));
+  } catch (error) {
+    await client.query('ROLLBACK');
+    console.error('Error al ejecutar múltiples casos de prueba:', error);
+    res.status(500).json({ message: 'Error al ejecutar múltiples casos de prueba' });
+  } finally {
+    client.release();
+  }
+};
+
 
 module.exports = {
   createExecutionCycle,
@@ -266,5 +364,17 @@ module.exports = {
   updateExecutionCycle,
   deleteExecutionCycle,
   deleteTestCaseFromCycle,
-  getExecutionSummaryByTestPlanId, // Asegúrate de que esta función esté exportada
+  getExecutionSummaryByTestPlanId,
+  executeMultipleTestCases // Asegúrate de exportar la nueva función
+};
+
+
+module.exports = {
+  createExecutionCycle,
+  updateTestCaseExecution,
+  updateExecutionCycle,
+  deleteExecutionCycle,
+  deleteTestCaseFromCycle,
+  getExecutionSummaryByTestPlanId,
+  executeMultipleTestCases, // Asegúrate de que esta función esté exportada
 };

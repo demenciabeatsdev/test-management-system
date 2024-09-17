@@ -44,7 +44,7 @@ const loginUser = async (req, res) => {
 
     // Guardar el token en la base de datos con la fecha de expiración
     await db.query(
-      'INSERT INTO user_tokens (user_id, token, is_active, expires_at) VALUES ($1, $2, TRUE, $3)',
+      'INSERT INTO user_tokens (user_id, token, is_active, expires_at, created_at, updated_at) VALUES ($1, $2, TRUE, $3, NOW(), NOW())',
       [user.id, accessToken, expiresAt]
     );
 
